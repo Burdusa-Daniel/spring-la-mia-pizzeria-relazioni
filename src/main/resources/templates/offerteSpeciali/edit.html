@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
+    <title>modifica offerta</title>
+</head>
+<body>
+<form th:action="@{/offerteSpeciali/edit/{id}(id=${offertaSpeciale.id})}" id="offerteSpecialiForm" method="post"
+      th:object="${offertaSpeciale}">
+    <input type="hidden" th:field="*{pizza}">
+    <div class="mb-3">
+        <label for="dataInizio" class="form-label">data inizio</label>
+        <input type="date" class="form-control" id="dataInizio" th:field="*{dataInizio}"
+               th:errorClass="is-invalid">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataInizio')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataInizio')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="dataFine" class="form-label">data fine</label>
+        <input type="date" class="form-control" id="dataFine" th:field="*{dataFine}"
+               th:errorClass="is-invalid">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataFine')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/pizza/show/{pizzaId}(pizzaId=${offertaSpeciale.pizza.id})}"
+           class="btn btn-primary">cancel</a>
+    </div>
+</form>
+
+</body>
+</html>
