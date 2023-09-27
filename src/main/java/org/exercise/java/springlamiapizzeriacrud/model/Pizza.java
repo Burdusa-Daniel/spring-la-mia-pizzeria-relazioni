@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -64,5 +65,14 @@ public class Pizza {
 
     public void setOffertaSpecialeList(List<OffertaSpeciale> offertaSpecialeList) {
         this.offertaSpecialeList = offertaSpecialeList;
+    }
+    public Boolean hasOffer(){
+        LocalDate today = LocalDate.now();
+        for(OffertaSpeciale o:offertaSpecialeList){
+            if (o.getDataInizio().isBefore(today)&&o.getDataFine().isAfter(today)){
+                return true;
+            }
+        }
+        return false;
     }
 }
