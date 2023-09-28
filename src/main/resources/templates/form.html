@@ -15,7 +15,7 @@
 <div class="container">
     <h1>create new pizza</h1>
     <div>
-        <form id="pizza-form" th:action="@{/pizza/create}" th:object="${nuovaPizza}" method="post">
+        <form id="pizza-form" th:action="@{/pizza/create}" th:object="${nuovaPizza}" method="post" class="row">
             <div class="mb-3">
                 <label for="name" class="form-label">name</label>
                 <input type="text" class="form-control" id="name" th:field="*{name}" required
@@ -44,6 +44,14 @@
                     <ul>
                         <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
                     </ul>
+                </div>
+            </div>
+            <div>
+                <h4>Ingredienti</h4>
+                <div class="form-check" th:each="ing:${ingredienteList}">
+                    <input class="form-check-input" type="checkbox" th:value="${ing.id}" th:id="|ingrediente_${ing.id}|"
+                           th:field="*{ingredienti}">
+                    <label  class="form-check-label" th:for="|ingrediente_${ing.id}|" th:text="${ing.name}"></label>
                 </div>
             </div>
             <div class="mb-3">

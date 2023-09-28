@@ -26,6 +26,8 @@ public class Pizza {
     private int price;
     @OneToMany(mappedBy = "pizza",cascade = {CascadeType.REMOVE})
     private List<OffertaSpeciale> offertaSpecialeList;
+    @ManyToMany
+    private List<Ingrediente> ingredienti;
 
     public Integer getId() {
         return id;
@@ -66,6 +68,15 @@ public class Pizza {
     public void setOffertaSpecialeList(List<OffertaSpeciale> offertaSpecialeList) {
         this.offertaSpecialeList = offertaSpecialeList;
     }
+
+    public List<Ingrediente> getIngredienti() {
+        return ingredienti;
+    }
+
+    public void setIngredienti(List<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
     public Boolean hasOffer(){
         LocalDate today = LocalDate.now();
         for(OffertaSpeciale o:offertaSpecialeList){

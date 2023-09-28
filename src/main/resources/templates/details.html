@@ -32,6 +32,12 @@
             </tr>
             </tbody>
         </table>
+        <div class="row">
+            <h4>Ingredienti</h4>
+            <ul>
+                <li th:each="ing:${pizza.ingredienti}" th:text="${ing.name}"></li>
+            </ul>
+        </div>
     </div>
     <div class="row">
         <h2>offerte speciali</h2>
